@@ -9,7 +9,7 @@ import UIKit
 
 
 protocol MyUIDelegate: AnyObject {
-    func tapMeAction(message: String)
+    func tapMeAction(myUIView: MyUIView, message: String)
 }
 
 class MyUIView: UIView {
@@ -52,7 +52,7 @@ class MyUIView: UIView {
 
 extension MyUIView {
     @objc private func bridgeButtonAction() {
-        delegate?.tapMeAction(message: self.textField.text ?? "")
+        delegate?.tapMeAction(myUIView: self, message: self.textField.text ?? "")
     }
 }
 
@@ -60,16 +60,23 @@ class RootViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
-        let myUIView = MyUIView(frame: view.frame, delegate: self)
-        view.addSubview(myUIView)
+        
+        var topUIFrame = view.frame
+        topUIFrame.origin.y -= 50
+        let topUI = MyUIView(frame: topUIFrame, delegate: self)
+        view.addSubview(topUI)
+        
+        var bottomUIFrame = view.frame
+        bottomUIFrame.origin.y += 50
+        let bottomUI = MyUIView(frame: bottomUIFrame, delegate: self)
+        view.addSubview(bottomUI)
     }
 }
 
 extension RootViewController: MyUIDelegate {
-    @objc func tapMeAction(message: String) {
+    @objc func tapMeAction(myUIView: MyUIView, message: String) {
         let alert = UIAlertController(title: "Message", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         self.present(alert, animated: true, completion: nil)
     }
 }
-

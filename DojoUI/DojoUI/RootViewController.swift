@@ -8,8 +8,8 @@
 import UIKit
 
 
-@objc protocol MyUIDelegate {
-    @objc func tapMeAction()
+protocol MyUIDelegate: AnyObject {
+    func tapMeAction(message: String)
 }
 
 class MyUIView: UIView {
@@ -41,18 +41,19 @@ class MyUIView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.topAnchor.constraint(equalTo: textField.bottomAnchor).isActive = true
         button.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor).isActive = true
-        
-        // Delegate, compiles, explodes ...
-        if let delegate = self.delegate {
-            button.addTarget(self, action: #selector(delegate.tapMeAction), for: .touchUpInside)
-        }
-        
+        button.addTarget(self, action: #selector(bridgeButtonAction), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
+}
+
+extension MyUIView {
+    @objc private func bridgeButtonAction() {
+        delegate?.tapMeAction(message: self.textField.text ?? "")
+    }
 }
 
 class RootViewController: UIViewController {
@@ -65,8 +66,10 @@ class RootViewController: UIViewController {
 }
 
 extension RootViewController: MyUIDelegate {
-    @objc func tapMeAction() {
-        print("Helloooou!")
+    @objc func tapMeAction(message: String) {
+        let alert = UIAlertController(title: "Message", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

@@ -7,11 +7,20 @@
 
 import UIKit
 
+
+@objc protocol MyUIDelegate {
+    @objc func tapMeAction()
+}
+
 class MyUIView: UIView {
     var textField: UITextField!
     var button: UIButton!
     
-    override init(frame: CGRect) {
+    weak var delegate: MyUIDelegate?
+    
+    init(frame: CGRect, delegate: MyUIDelegate?) {
+        self.delegate = delegate
+        
         super.init(frame: frame)
         let safeArea = self.safeAreaLayoutGuide
         
@@ -32,6 +41,12 @@ class MyUIView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.topAnchor.constraint(equalTo: textField.bottomAnchor).isActive = true
         button.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor).isActive = true
+        
+        // Delegate, compiles, explodes ...
+        if let delegate = self.delegate {
+            button.addTarget(self, action: #selector(delegate.tapMeAction), for: .touchUpInside)
+        }
+        
     }
     
     required init?(coder: NSCoder) {
@@ -41,13 +56,17 @@ class MyUIView: UIView {
 }
 
 class RootViewController: UIViewController {
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
-        let myUIView = MyUIView(frame: view.frame)
+        let myUIView = MyUIView(frame: view.frame, delegate: self)
         view.addSubview(myUIView)
     }
+}
 
+extension RootViewController: MyUIDelegate {
+    @objc func tapMeAction() {
+        print("Helloooou!")
+    }
 }
 

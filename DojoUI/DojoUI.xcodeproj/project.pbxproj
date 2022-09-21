@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1C317CAB28DA2A1C00DC5BF3 /* DojoFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C317CAA28DA2A1C00DC5BF3 /* DojoFramework.framework */; };
-		1C317CAC28DA2A1C00DC5BF3 /* DojoFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1C317CAA28DA2A1C00DC5BF3 /* DojoFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1CE8753C28DA24D1004947F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE8753B28DA24D1004947F2 /* AppDelegate.swift */; };
 		1CE8753E28DA24D1004947F2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE8753D28DA24D1004947F2 /* SceneDelegate.swift */; };
 		1CE8754028DA24D1004947F2 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE8753F28DA24D1004947F2 /* RootViewController.swift */; };
@@ -36,20 +34,6 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		1C317CAD28DA2A1C00DC5BF3 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				1C317CAC28DA2A1C00DC5BF3 /* DojoFramework.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		1C317CAA28DA2A1C00DC5BF3 /* DojoFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DojoFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CE8753828DA24D1004947F2 /* DojoUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DojoUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,7 +55,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C317CAB28DA2A1C00DC5BF3 /* DojoFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,7 +144,6 @@
 				1CE8753428DA24D1004947F2 /* Sources */,
 				1CE8753528DA24D1004947F2 /* Frameworks */,
 				1CE8753628DA24D1004947F2 /* Resources */,
-				1C317CAD28DA2A1C00DC5BF3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

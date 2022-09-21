@@ -105,21 +105,21 @@ class RootViewController: UIViewController {
 }
 
 class MyUIColor {
-    static let colorMappings = [
-        "black": UIColor.black,
-        "blue": UIColor.blue,
-        "brown": UIColor.brown,
-        "cyan": UIColor.cyan,
-        "darkgray": UIColor.darkGray,
-        "gray": UIColor.gray,
-        "green": UIColor.green,
-        "lightgray": UIColor.lightGray,
-        "magenta": UIColor.magenta,
-        "orange": UIColor.orange,
-        "purple": UIColor.purple,
-        "red": UIColor.red,
-        "white": UIColor.white,
-        "yellow": UIColor.yellow
+    static let colorMappings: [String: UIColor] = [
+        "black": .black,
+        "blue": .blue,
+        "brown": .brown,
+        "cyan": .cyan,
+        "darkgray": .darkGray,
+        "gray": .gray,
+        "green": .green,
+        "lightgray": .lightGray,
+        "magenta": .magenta,
+        "orange": .orange,
+        "purple": .purple,
+        "red": .red,
+        "white": .white,
+        "yellow": .yellow
     ]
     static func magicInit(name: String) -> UIColor? {
         return colorMappings[name.lowercased()]

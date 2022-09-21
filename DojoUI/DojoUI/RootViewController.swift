@@ -104,6 +104,28 @@ class RootViewController: UIViewController {
     }
 }
 
+class MyUIColor {
+    static let colorMappings = [
+        "black": UIColor.black,
+        "blue": UIColor.blue,
+        "brown": UIColor.brown,
+        "cyan": UIColor.cyan,
+        "darkgray": UIColor.darkGray,
+        "gray": UIColor.gray,
+        "green": UIColor.green,
+        "lightgray": UIColor.lightGray,
+        "magenta": UIColor.magenta,
+        "orange": UIColor.orange,
+        "purple": UIColor.purple,
+        "red": UIColor.red,
+        "white": UIColor.white,
+        "yellow": UIColor.yellow
+    ]
+    static func magicInit(name: String) -> UIColor? {
+        return colorMappings[name.lowercased()]
+    }
+}
+
 extension RootViewController: MyUIDelegate {
     
     private func alert(title: String, message: String) {
@@ -112,11 +134,17 @@ extension RootViewController: MyUIDelegate {
         self.present(alert, animated: true, completion: nil)
     }
     
+    private func changeBackgroundColor(_ view: MyUIView, to color: String) {
+        view.backgroundColor = MyUIColor.magicInit(name: color)
+    }
+    
     @objc func tapMeAction(_ sender: MyUIView, message: String) {
         if sender.identifier == "topUI" {
             alert(title: "Top", message: message)
+            changeBackgroundColor(sender, to: message)
         } else if sender.identifier == "bottomUI" {
             alert(title: "Bottom", message: message)
+            changeBackgroundColor(sender, to: message)
         }
     }
 }
